@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         lista.add(new Android(lista.size()+1,R.drawable.image6,"cup cake", "v5"));
 
         binding.rvandroid.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        AndroidAdapter adapter = new AndroidAdapter(lista);
+        AndroidAdapter adapter = new AndroidAdapter(lista,MainActivity.this);
         binding.rvandroid.setAdapter(adapter);
 
     }

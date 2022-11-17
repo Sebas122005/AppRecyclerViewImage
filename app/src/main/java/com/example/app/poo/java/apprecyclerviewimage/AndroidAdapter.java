@@ -1,5 +1,7 @@
 package com.example.app.poo.java.apprecyclerviewimage;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +17,18 @@ public class AndroidAdapter extends RecyclerView.Adapter<AndroidAdapter.ViewHold
 
 
     private List<Android>lista;
+    private Context context;
 
-    public AndroidAdapter(List<Android> lista) {
+    public AndroidAdapter(List<Android> lista,Context context) {
         this.lista = lista;
+        this.context=context;
     }
 
     @NonNull
     @Override
     public AndroidAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(ItemAndroidBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
+
     }
 
     @Override
@@ -32,6 +37,14 @@ public class AndroidAdapter extends RecyclerView.Adapter<AndroidAdapter.ViewHold
         holder.binding.imgPostre.setImageResource(itemAndoid.getImagen());
         holder.binding.txtNombre.setText(itemAndoid.getNombre());
         holder.binding.txtVersion.setText(itemAndoid.getVersion());
+        holder.binding.contenedor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentAndroidDetalle = new Intent(context,DetalleActivity.class);
+                intentAndroidDetalle.putExtra("android",itemAndoid);
+                context.startActivity(intentAndroidDetalle);
+            }
+        });
 
 
     }
